@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Entrypoint for the midi analysis"""
 
 import sys
 import time
@@ -8,10 +9,13 @@ from rtmidi.midiutil import open_midiinput
 
 import chords
 
-notes = set()
-notes_histogram = Counter()
+NOTES = set()
+NOTES_HISTOGRAM = Counter()
+PORT = sys.argv[1] if len(sys.argv) > 1 else None
 
 class MidiInputAnalysisHandler(object):
+    """Callback handler device for midi input"""
+
     def __init__(self, port):
         self.port = port
         self._wallclock = time.time()
@@ -22,30 +26,31 @@ class MidiInputAnalysisHandler(object):
 
         event, note, _ = message
         if event == 144:
-            notes.add(note)
-            notes_histogram[note%12] += 1
+            NOTES.add(note)
+            NOTES_HISTOGRAM[note%12] += 1
         elif event == 128:
-            notes.remove(note)
+            NOTES.remove(note)
 
-        name = chords.name_chord(notes)
+        name = chords.name_chord(NOTES)
 
-        key_notes = set([ note for note, _ in notes_histogram.most_common(7) ])
+        key_notes = set(
+            [note for note, _ in NOTES_HISTOGRAM.most_common(7)]
+        )
         key = chords.name_scale(key_notes)
 
-        note_names = chords.name_notes(notes)
+        note_names = chords.name_notes(NOTES)
 
         if name:
-            print("chord: {}, scale: {}, notes: {}".format(name, key, note_names))
-
-
-port = sys.argv[1] if len(sys.argv) > 1 else None
+            print(
+                "chord: {}, scale: {}, notes: {}".format(name, key, note_names)
+            )
 
 try:
-    midiin, port_name = open_midiinput(port)
+    MIDIIN, PORT_NAME = open_midiinput(PORT)
 except (EOFError, KeyboardInterrupt):
     sys.exit()
 
-midiin.set_callback(MidiInputAnalysisHandler(port_name))
+MIDIIN.set_callback(MidiInputAnalysisHandler(PORT_NAME))
 
 print("Press Control-C to exit.")
 try:
@@ -54,5 +59,5 @@ try:
 except KeyboardInterrupt:
     print('')
 finally:
-    midiin.close_port()
-    del midiin
+    MIDIIN.close_port()
+    del MIDIIN

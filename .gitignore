@@ -1,2 +1,5 @@
 *.pyc
 *.swp
+.env
+*.ts
+.cache
