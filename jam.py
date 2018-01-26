@@ -24,7 +24,12 @@ class MidiInputAnalysisHandler(object):
         message, deltatime = event
         self._wallclock += deltatime
 
-        event, note, _ = message
+        # only unpack messages that are 3-tuples
+        try:
+            event, note, _ = message
+        except ValueError:
+            return
+
         if event == 144:
             NOTES.add(note)
             NOTES_HISTOGRAM[note%12] += 1
