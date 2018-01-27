@@ -14,3 +14,14 @@ def test_name_notes(test_input, expected):
     chords = Chords()
     actual = chords.name_note(test_input)
     assert actual == expected
+
+
+CHORD_INPUTS = [
+    (frozenset([0, 4, 7]), 'C maj')
+]
+
+@pytest.mark.parametrize("test_input, expected", CHORD_INPUTS)
+def test_name_chords(test_input, expected):
+    chords = Chords()
+    actual = chords.name_chord(test_input)
+    assert actual == expected
