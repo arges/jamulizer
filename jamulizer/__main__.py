@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Entrypoint for the midi analysis"""
+"""entrypoint for the midi analysis"""
 
 import sys
 import time
@@ -11,6 +11,7 @@ from jamulizer import visualizer
 PORT = sys.argv[1] if len(sys.argv) > 1 else None
 
 def main():
+    """main entrypoint"""
     try:
         midi_in, port_name = open_midiinput(PORT)
     except (EOFError, KeyboardInterrupt):
@@ -31,4 +32,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

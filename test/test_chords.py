@@ -1,7 +1,7 @@
 """Tests on the chords module"""
 
 import pytest
-from jamulizer import chords
+from jamulizer.chords import Chords
 
 NOTE_INPUTS = [
     (98, 'D'),
@@ -11,5 +11,6 @@ NOTE_INPUTS = [
 
 @pytest.mark.parametrize("test_input, expected", NOTE_INPUTS)
 def test_name_notes(test_input, expected):
+    chords = Chords()
     actual = chords.name_note(test_input)
     assert actual == expected
