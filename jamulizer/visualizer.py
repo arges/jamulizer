@@ -1,17 +1,13 @@
 #!/usr/bin/env python
-"""Entrypoint for the midi analysis"""
+"""Visualizer component"""
 
-import sys
 import time
 from collections import Counter
 
-from rtmidi.midiutil import open_midiinput
-
-import chords
+from jamulizer import chords
 
 NOTES = set()
 NOTES_HISTOGRAM = Counter()
-PORT = sys.argv[1] if len(sys.argv) > 1 else None
 
 class MidiInputAnalysisHandler(object):
     """Callback handler device for midi input"""
@@ -49,20 +45,3 @@ class MidiInputAnalysisHandler(object):
             print(
                 "chord: {}, scale: {}, notes: {}".format(name, key, note_names)
             )
-
-try:
-    MIDIIN, PORT_NAME = open_midiinput(PORT)
-except (EOFError, KeyboardInterrupt):
-    sys.exit()
-
-MIDIIN.set_callback(MidiInputAnalysisHandler(PORT_NAME))
-
-print("Press Control-C to exit.")
-try:
-    while True:
-        time.sleep(1)
-except KeyboardInterrupt:
-    print('')
-finally:
-    MIDIIN.close_port()
-    del MIDIIN

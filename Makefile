@@ -2,7 +2,7 @@
 
 SHELL := /bin/bash
 VENV_NAME := .env
-SRC := $(shell find . -name "*.py" -print -o -path ./.env -prune)
+SRC := $(shell find jamulizer -name "*.py" -print -o -path ./.env -prune)
 
 all: build test
 
@@ -14,7 +14,7 @@ build: .build.ts
 	@touch $@
 
 run: .build.ts
-	$(VENV_NAME)/bin/python jam.py
+	$(VENV_NAME)/bin/python -m jamulizer
 
 clean:
 	rm -f .*.ts;
@@ -25,6 +25,7 @@ distclean: clean
 clean_pyc:
 	find . -name "*.pyc" -delete
 
+check: test
 test: build .tests.ts
 
 lint: build .pylint.ts

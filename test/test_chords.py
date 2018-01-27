@@ -1,7 +1,7 @@
 """Tests on the chords module"""
 
 import pytest
-import chords
+from jamulizer import chords
 
 NOTE_INPUTS = [
     (98, 'D'),
