@@ -6,7 +6,7 @@ quick start
 
 # install dependencies
 
-    $ sudo apt-get instal python3-venv python3-dev libasound2-dev libjack-jackd2-dev
+    $ sudo apt install python3-venv python3-dev libasound2-dev libjack-jackd2-dev
 
 # plug in MIDI hardware
 
