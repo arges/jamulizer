@@ -17,7 +17,11 @@ def test_name_notes(test_input, expected):
 
 
 CHORD_INPUTS = [
-    (frozenset([0, 4, 7]), 'C maj')
+    (frozenset([0, 4, 7]), 'C maj'),
+    (frozenset([2, 5, 9]), 'D min'),
+    (['a', 2, 3], None),
+    (None, None),
+    ([1, 2, 3], None)
 ]
 
 @pytest.mark.parametrize("test_input, expected", CHORD_INPUTS)
