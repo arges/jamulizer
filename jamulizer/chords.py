@@ -67,8 +67,10 @@ class Chords:
 
     def name_chord(self, input_notes):
         for key in self.notes:
-            note_set = frozenset([((note%12)-key)%12 for note in input_notes])
             try:
+                note_set = frozenset([((note%12)-key)%12 for note in input_notes])
                 return self.notes[key] + " " + self.chords[note_set][0]
             except KeyError:
+                pass
+            except TypeError:
                 pass
