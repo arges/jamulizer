@@ -28,6 +28,7 @@ class Chords:
 
     """ chord intervals """
     chords = {
+        frozenset([0, 7]): ['5', 'fifth'],
         frozenset([0, 2, 7]): ['sus2', 'suspended second'],
         frozenset([0, 5, 7]): ['sus4', 'suspended fourth'],
         frozenset([0, 4, 7]): ['maj', 'major'],
