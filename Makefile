@@ -23,7 +23,7 @@ distclean: clean
 clean_pyc:
 	find . -name "*.pyc" -delete
 
-check: test
+check: test lint
 test: build .tests.ts
 
 lint: build .pylint.ts
@@ -35,4 +35,3 @@ lint: build .pylint.ts
 .pylint.ts: $(SRC)
 	$(VENV_NAME)/bin/pylint --rcfile=.pylintrc --reports n -f colorized $(filter %.py, $?)
 	@touch $@
-
