@@ -1,5 +1,3 @@
-# This file is just for convenience during development. Has no impact on the project itself. Feel free to use or ignore
-
 SHELL := /bin/bash
 VENV_NAME := .env
 SRC := $(shell find jamulizer -name "*.py" -print -o -path ./.env -prune)

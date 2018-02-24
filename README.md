@@ -1,5 +1,7 @@
 A MIDI chord analysis program.
 
+[![Build Status](https://travis-ci.org/arges/jamulizer.svg?branch=master)](https://travis-ci.org/arges/jamulizer)
+
 quick start
 -----------
 ```
