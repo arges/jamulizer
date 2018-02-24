@@ -40,8 +40,9 @@ class MidiInputAnalysisHandler(object):
         key = self.chords.name_scale(key_notes)
 
         note_names = self.chords.name_notes(self.notes)
+        bass_note_name = self.chords.name_bass_note(self.notes)
 
         if name:
             print(
-                "chord: {}, scale: {}, notes: {}".format(name, key, note_names)
+                "chord: {}, scale: {}, notes: {}, bass: {}".format(name, key, note_names, bass_note_name)
             )

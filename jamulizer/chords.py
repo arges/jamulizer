@@ -66,6 +66,14 @@ class Chords:
         return [self.name_note(note) for note in input_notes]
 
 
+    def name_bass_note(self, notes):
+        min_note = 127
+        for note in notes:
+            if note < min_note:
+                min_note = note
+        return self.name_note(min_note)
+
+
     def name_chord(self, input_notes):
         for key in self.notes:
             try:
