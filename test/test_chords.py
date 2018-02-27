@@ -11,8 +11,7 @@ NOTE_INPUTS = [
 
 @pytest.mark.parametrize("test_input, expected", NOTE_INPUTS)
 def test_name_notes(test_input, expected):
-    chords = Chords()
-    actual = chords.name_note(test_input)
+    actual = Chords.name_note(test_input)
     assert actual == expected
 
 
@@ -27,8 +26,7 @@ CHORD_INPUTS = [
 
 @pytest.mark.parametrize("test_input, expected", CHORD_INPUTS)
 def test_name_chords(test_input, expected):
-    chords = Chords()
-    actual = chords.name_chord(test_input)
+    actual = Chords.name_chord(test_input)
     assert actual == expected
 
 
@@ -39,6 +37,5 @@ SCALE_INPUTS = [
 
 @pytest.mark.parametrize("test_input, expected", SCALE_INPUTS)
 def test_name_scale(test_input, expected):
-    chords = Chords()
-    actual = chords.name_scale(test_input)
+    actual = Chords.name_scale(test_input)
     assert actual == expected

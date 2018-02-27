@@ -48,37 +48,41 @@ class Chords:
         (0, 4, 8, 10, 2, 5, 9): ['13', 'dominant thirteenth'],
     }
 
-
-    def name_scale(self, input_notes):
-        for key in self.notes:
+    @staticmethod
+    def name_scale(input_notes):
+        for key in Chords.notes:
             shift_scale = tuple(set([(note-key)%12 for note in input_notes]))
             try:
-                return self.notes[key] + " " + self.scales[shift_scale]
+                return Chords.notes[key] + " " + Chords.scales[shift_scale]
             except KeyError:
                 pass
 
 
-    def name_note(self, note):
-        return self.notes[note % 12]
+    @staticmethod
+    def name_note(note):
+        return Chords.notes[note % 12]
 
 
-    def name_notes(self, input_notes):
-        return [self.name_note(note) for note in input_notes]
+    @staticmethod
+    def name_notes(input_notes):
+        return [Chords.name_note(note) for note in input_notes]
 
 
-    def name_bass_note(self, notes):
+    @staticmethod
+    def name_bass_note(notes):
         min_note = 127
         for note in notes:
             if note < min_note:
                 min_note = note
-        return self.name_note(min_note)
+        return Chords.name_note(min_note)
 
 
-    def name_chord(self, input_notes):
-        for key in self.notes:
+    @staticmethod
+    def name_chord(input_notes):
+        for key in Chords.notes:
             try:
                 note_tuple = tuple(set([((note%12)-key)%12 for note in input_notes]))
-                return self.notes[key] + " " + self.chords[note_tuple][0]
+                return Chords.notes[key] + " " + Chords.chords[note_tuple][0]
             except KeyError:
                 pass
             except TypeError:

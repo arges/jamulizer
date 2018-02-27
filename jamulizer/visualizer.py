@@ -14,7 +14,6 @@ class MidiInputAnalysisHandler(object):
         self._wallclock = time.time()
         self.notes = set()
         self.notes_histogram = Counter()
-        self.chords = Chords()
 
     def __call__(self, event, data=None):
         message, deltatime = event
@@ -32,15 +31,15 @@ class MidiInputAnalysisHandler(object):
         elif event == 128:
             self.notes.remove(note)
 
-        name = self.chords.name_chord(self.notes)
+        name = Chords.name_chord(self.notes)
 
         key_notes = set(
             [note for note, _ in self.notes_histogram.most_common(7)]
         )
-        key = self.chords.name_scale(key_notes)
+        key = Chords.name_scale(key_notes)
 
-        note_names = self.chords.name_notes(self.notes)
-        bass_note_name = self.chords.name_bass_note(self.notes)
+        note_names = Chords.name_notes(self.notes)
+        bass_note_name = Chords.name_bass_note(self.notes)
 
         if name:
             print(
