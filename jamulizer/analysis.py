@@ -1,8 +1,8 @@
 """
-chord analysis library
+midi analysis library
 """
 
-class Chords:
+class Analysis:
 
     """ names of notes """
     notes = {
@@ -50,22 +50,22 @@ class Chords:
 
     @staticmethod
     def name_scale(input_notes):
-        for key in Chords.notes:
+        for key in Analysis.notes:
             shift_scale = tuple(set([(note-key)%12 for note in input_notes]))
             try:
-                return Chords.notes[key] + " " + Chords.scales[shift_scale]
+                return Analysis.notes[key] + " " + Analysis.scales[shift_scale]
             except KeyError:
                 pass
 
 
     @staticmethod
     def name_note(note):
-        return Chords.notes[note % 12]
+        return Analysis.notes[note % 12]
 
 
     @staticmethod
     def name_notes(input_notes):
-        return [Chords.name_note(note) for note in input_notes]
+        return [Analysis.name_note(note) for note in input_notes]
 
 
     @staticmethod
@@ -74,15 +74,15 @@ class Chords:
         for note in notes:
             if note < min_note:
                 min_note = note
-        return Chords.name_note(min_note)
+        return Analysis.name_note(min_note)
 
 
     @staticmethod
     def name_chord(input_notes):
-        for key in Chords.notes:
+        for key in Analysis.notes:
             try:
                 note_tuple = tuple(set([((note%12)-key)%12 for note in input_notes]))
-                return Chords.notes[key] + " " + Chords.chords[note_tuple][0]
+                return Analysis.notes[key] + " " + Analysis.chords[note_tuple][0]
             except KeyError:
                 pass
             except TypeError:

@@ -4,7 +4,7 @@
 import time
 from collections import Counter
 
-from jamulizer.chords import Chords
+from jamulizer.analysis import Analysis
 
 class MidiInputAnalysisHandler(object):
     """Callback handler device for midi input"""
@@ -31,15 +31,15 @@ class MidiInputAnalysisHandler(object):
         elif event == 128:
             self.notes.remove(note)
 
-        name = Chords.name_chord(self.notes)
+        name = Analysis.name_chord(self.notes)
 
         key_notes = set(
             [note for note, _ in self.notes_histogram.most_common(7)]
         )
-        key = Chords.name_scale(key_notes)
+        key = Analysis.name_scale(key_notes)
 
-        note_names = Chords.name_notes(self.notes)
-        bass_note_name = Chords.name_bass_note(self.notes)
+        note_names = Analysis.name_notes(self.notes)
+        bass_note_name = Analysis.name_bass_note(self.notes)
 
         if name:
             print(
