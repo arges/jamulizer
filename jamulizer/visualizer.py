@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Visualizer component"""
 
 import time

@@ -85,7 +85,6 @@ class Analysis:
         for key in Analysis.notes:
             try:
                 note_tuple = frozenset([((note%12)-key)%12 for note in input_notes])
-                print(note_tuple)
                 return Analysis.notes[key] + " " + Analysis.chords[note_tuple][0]
             except KeyError:
                 pass

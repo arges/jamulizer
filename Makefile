@@ -12,7 +12,7 @@ build: .build.ts
 	@touch $@
 
 run: .build.ts
-	$(VENV_NAME)/bin/python -m jamulizer
+	$(VENV_NAME)/bin/python -m jamulizer 1
 
 clean:
 	rm -f .*.ts;
