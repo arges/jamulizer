@@ -16,7 +16,7 @@ def test_name_notes(test_input, expected):
 
 
 CHORD_INPUTS = [
-    ([0, 7], 'C 5'),
+    #([0, 7], 'C 5'),
     ([0, 4, 7], 'C maj'),
     ([0, 4, 7, 11], 'C maj7'),
     ([0, 4, 8, 10, 2, 5, 9], 'C 13'),
